@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:amazon_clone/common/widgets/bottom_bar.dart';
 import 'package:amazon_clone/constants/error_handling.dart';
 import 'package:amazon_clone/constants/utils.dart';
 import 'package:amazon_clone/constants/variables.dart';
@@ -77,11 +78,48 @@ class AuthService {
           // ignore: use_build_context_synchronously
           Navigator.pushNamedAndRemoveUntil(
             context,
-            HomeScreen.routeName,
+            BottomNavBar.routeName,
             (route) => false,
           );
         },
       );
+    } catch (e) {
+      showSnackBar(
+        context,
+        e.toString(),
+      );
+    }
+  }
+
+//get userdata
+  void getUserData(BuildContext context) async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String? tokenFromUser = prefs.getString('token');
+
+      if (tokenFromUser == null) {
+        prefs.setString('token', '');
+      }
+      var tokenResponse = await http
+          .post(Uri.parse('$uri/tokenIsValid'), headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'token': tokenFromUser!,
+      });
+
+      var response = jsonDecode(tokenResponse.body);
+      if (response == true) {
+        //get user data
+        http.Response userRes = await http.get(
+          Uri.parse('$uri/'),
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+            'token': tokenFromUser,
+          },
+        );
+        // ignore: use_build_context_synchronously
+        var userProvider = Provider.of<UserProvider>(context, listen: false);
+        userProvider.setUser(userRes.body);
+      }
     } catch (e) {
       showSnackBar(
         context,
