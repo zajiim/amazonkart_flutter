@@ -17,7 +17,7 @@ class HomepageTextfield extends StatelessWidget {
       obscureText: isObscure,
       controller: controller,
       decoration: InputDecoration(
-        contentPadding: EdgeInsets.all(12.0),
+        contentPadding:const EdgeInsets.all(12.0),
         isDense: true,
         hintText: hintText,
         border: const OutlineInputBorder(

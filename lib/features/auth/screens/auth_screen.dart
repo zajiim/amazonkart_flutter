@@ -94,8 +94,14 @@ class _AuthScreenState extends State<AuthScreen> {
               ),
               if (_auth == Auth.signup)
                 Container(
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(15),
+                      bottomRight: Radius.circular(15),
+                    ),
+                    color: GlobalVariables.backgroundColor,
+                  ),
                   padding: const EdgeInsets.all(8.0),
-                  color: GlobalVariables.backgroundColor,
                   child: Form(
                     key: _signupFormKey,
                     child: Column(
@@ -159,8 +165,13 @@ class _AuthScreenState extends State<AuthScreen> {
               ),
               if (_auth == Auth.signin)
                 Container(
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(15),
+                        bottomRight: Radius.circular(15)),
+                    color: GlobalVariables.backgroundColor,
+                  ),
                   padding: const EdgeInsets.all(8.0),
-                  color: GlobalVariables.backgroundColor,
                   child: Form(
                     key: _signinFormKey,
                     child: Column(
