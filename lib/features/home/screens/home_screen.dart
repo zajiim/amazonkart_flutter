@@ -1,8 +1,11 @@
+import 'package:amazon_clone/features/home/widgets/carousel_widget.dart';
 import 'package:amazon_clone/providers/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../constants/variables.dart';
+import '../widgets/address_box_widget.dart';
+import '../widgets/categories_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = '/home';
@@ -82,10 +85,18 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      body: Center(
-        child: Text(
-          user.toJson(),
-        ),
+      body: Column(
+        children: const [
+          AddressBoxWidget(),
+          SizedBox(
+            height: 10,
+          ),
+          CategoriesWidget(),
+          SizedBox(
+            height: 10,
+          ),
+          CarouselWidget(),
+        ],
       ),
     );
   }
