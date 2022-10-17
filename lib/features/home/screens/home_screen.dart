@@ -1,4 +1,5 @@
 import 'package:amazon_clone/features/home/widgets/carousel_widget.dart';
+import 'package:amazon_clone/features/home/widgets/deal_of_the_day_widget.dart';
 import 'package:amazon_clone/providers/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -85,7 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      body: Column(
+      body: ListView(
         children: const [
           AddressBoxWidget(),
           SizedBox(
@@ -96,6 +97,7 @@ class _HomeScreenState extends State<HomeScreen> {
             height: 10,
           ),
           CarouselWidget(),
+          DealOfTheDayWidget(),
         ],
       ),
     );
